@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:title" content="NYC Map Tiles - How To">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:type" content="website">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:url" content="https:/maps.nyc.gov/tiles">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image" content="https:/maps.nyc.gov/tiles/img/og.png">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image:width" content="1200">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image:height" content="626">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:description" content="NYC Map Tiles - How To">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">	
+	<title>NYC Map Tiles - How To</title>
+	<style>
+		html, body {
+			font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+		}
+		#bg {
+			position: fixed;
+			left: 0;
+			top: 0;
+			opacity: .15;
+			z-index: -1;
+		}
+		#banner {
+			display: inline-block;
+			width: 80px;
+			background-image: url(img/nyc.svg);
+			background-repeat: no-repeat;
+			background-size: 75px 25px;
+		}
+		#banner span {
+			position: relative;
+			left: 0px;
+			top: 5px;
+			font-size: 11px;
+			font-weight: bold;
+		}
+		h1 {
+			display: inline-block;
+		}
+		li div {
+			display: inline-block;
+		}
+		li div.tms-lyr {
+			font-weight: bold;
+			padding-right: 10px;
+		}
+		li div.tms-uri, p.code {
+			font-family: 'Lucida Console','Courier New';
+		}
+		p.code {
+			white-space: pre;
+			border: 1px solid rgba(0,0,0,.5);
+			border-radius: 3px;
+			background-color: rgba(255,255,255,0.5);
+			padding: 10px;
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+	<img id="bg" src="img/mtc.png" alt="maps.nyc.gov">
+	<h1 id="banner"><span>maps.nyc.gov</span>&nbsp;</h1>	
+	<h1>Map Tiles: How To</h1>
+	
+	<h2>Background</h2>
+	<p>
+		Something about fly overs, orthos, planametrics, etc.
+	</p>
+	
+	<h2>Tile Map Service</h2>
+	<p>
+		The GIS team at NYC's Department of Information Technology has published a new <a href="https:/wiki.osgeo.org/wiki/Tile_Map_Service_Specification">tile map service (TMS)</a> using <a href="http:/geoserver.org/">GeoServer</a>
+		and <a href="http:/geowebcache.org/">GeoWebCache</a> from <a href="http:/boundlessgeo.com/">Boundless</a>.
+	</p>	
+	<p>
+		The TMS serves multiple tiled maps in the Web Mercator projection (EPSG:900913) compatible with most web mapping libraries such as
+		<a href="http:/openlayers.org/">OpenLayers</a>, <a href="https:/www.mapbox.com/">MapBox</a>, and <a href="http:/leafletjs.com/">Leaflet</a>.
+	</p>
+	<p>
+		The following basic tile sets are available:
+		<ul>
+			<li>
+				<div class="tms-lyr">basemap</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/carto/basemap/</div>
+				<p>A base layer for all of your mapping applications that contains parks, streets, buildings and other planimetic features.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">label</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/carto/label/</div>
+				<p>A label layer that contains neighborhood, park, street and other labels to overlay on the basemap layer.</p> 
+			</li>
+		</ul>
+		The following aerial photography tile sets are also available:
+		<ul>
+			<li>
+				<div class="tms-lyr">label-lt</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/carto/label-lt/</div>
+				<p>A label layer that contains neighborhood, park, street and other labels to overlay on the aerial photography layers.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">2014</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/2014/</div>
+				<p>An orthophotography layer created from the 2014 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">2012</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/2012/</div>
+				<p>An orthophotography layer created from the 2012 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">2010</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/2010/</div>
+				<p>An orthophotography layer created from the 2010 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">2008</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/2008/</div>
+				<p>An orthophotography layer created from the 2008 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">2006</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/2006/</div>
+				<p>An orthophotography layer created from the 2006 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">2004</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/2004/</div>
+				<p>An orthophotography layer created from the 2004 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">2001-2</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/2001-2/</div>
+				<p>An aerial photography layer created from the 2001-2 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">1996</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/1996/</div>
+				<p>An aerial photography layer created from the 1996 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">1951</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/1951/</div>
+				<p>An aerial photography layer created from a 1951 flyover.</p> 
+			</li>
+			<li>
+				<div class="tms-lyr">1924</div><div class="tms-uri">https:/maps.nyc.gov/tms/1.0.0/photo/1924/</div>
+				<p>An aerial photography layer created from a 1924 flyover.</p> 
+			</li>
+		</ul>
+
+	<h2>Javascript How To</h2>
+
+	<h3>OpenLayers</h3>
+	<p class="code">var view = new ol.View({
+  center: [-8235252, 4969073],
+  minZoom: 8,
+  maxZoom: 19,
+  zoom: 10
+});
+
+var baseLayer = new ol.layer.Tile({
+  extent: [-8453323, 4774561, -7983695, 5165920],
+  source: new ol.source.XYZ({
+    url: 'https:/maps{1-4}.nyc.gov/tms/1.0.0/carto/basemap/{z}/{x}/{-y}.jpg'
+  })
+});
+
+var labelLayer = new ol.layer.Tile({
+  extent: [-8268000, 4870900, -8005000, 5055500],
+  source: new ol.source.XYZ({
+    url: 'https:/maps{1-4}.nyc.gov/tms/1.0.0/carto/label/{z}/{x}/{-y}.png8'
+  })
+});
+
+var map = new ol.Map({
+  target: 'map', /the id of the DOM element that will contain the map
+  view: view,
+  layers: [baseLayer, labelLayer]
+});</p>
+<a href="openlayers.html">View the Openlayers map...</a>
+
+	<h3>Leaflet</h3>
+	<p class="code">var map = L.map('map');
+	
+var baseLayer = L.tileLayer('https:/maps{s}.nyc.gov/tms/1.0.0/carto/basemap/{z}/{x}/{y}.jpg', {
+  minNativeZoom: 8,
+  maxNativeZoom: 19,
+  subdomains: '1234',
+  tms: true,
+  bounds: L.latLngBounds([39.3682, -75.9374], [42.0329, -71.7187])
+});
+
+map.addLayer(baseLayer);
+
+var labelLayer = L.tileLayer('https:/maps{s}.nyc.gov/tms/1.0.0/carto/label/{z}/{x}/{y}.jpg', {
+  minNativeZoom: 8,
+  maxNativeZoom: 19,
+  subdomains: '1234',
+  tms: true,
+  bounds: L.latLngBounds([40.0341, -74.2727], [41.2919, -71.9101])
+});
+
+map.addLayer(labelLayer);</p>
+<a href="leaflet.html">View the Leaflet map...</a>
+
+</body>
+</html>
