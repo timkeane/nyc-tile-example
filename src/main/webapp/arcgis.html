@@ -55,16 +55,13 @@
 	
 			var baseLayer = new WebTileLayer({
 				urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/basemap/{level}/{col}/{row}.jpg',
-				subDomains: ['1', '2', '3', '4'],
-				fullExtent: [-75.9374, 39.3682, -71.7187, 42.0329],
-				minScale: 1066.3647917764529,
-				maxScale: 2183915.0935581755
+				subDomains: ['1', '2', '3', '4']
 			});
 	
 			map.add(baseLayer);
 
 			var labelLayer = new WebTileLayer({
-				urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/basemap/{level}/{col}/{row}.jpg',
+				urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/label/{level}/{col}/{row}.png8',
 				subDomains: ['1', '2', '3', '4'],
 				fullExtent: [-74.2727, 40.0341, -71.9101, 41.2919],
 				minScale: 1066.3647917764529,
