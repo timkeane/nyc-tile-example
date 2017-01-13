@@ -18,10 +18,19 @@
 		html, body {
 			font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
 		}
+		body {
+			padding-bottom: 50px;
+		}
 		#bg {
 			position: fixed;
-			left: 0;
 			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-image: url(img/mtc.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: auto 100%;
 			opacity: .15;
 			z-index: -1;
 		}
@@ -56,14 +65,14 @@
 			white-space: pre;
 			border: 1px solid rgba(0,0,0,.5);
 			border-radius: 3px;
-			background-color: rgba(255,255,255,0.5);
+			background-color: rgba(255,255,255,.6);
 			padding: 10px;
 			overflow: auto;
 		}
 	</style>
 </head>
 <body>
-	<img id="bg" src="img/mtc.png" alt="maps.nyc.gov">
+	<div id="bg"></div>
 	<h1 id="banner"><span>maps.nyc.gov</span>&nbsp;</h1>	
 	<h1>Map Tiles: How To</h1>
 	
@@ -166,15 +175,18 @@ var labelLayer = new ol.layer.Tile({
 });
 
 var map = new ol.Map({
-  target: 'map', /the id of the DOM element that will contain the map
+  target: 'map', /* The id of the DOM element that will contain the map */
   view: view,
   layers: [baseLayer, labelLayer]
 });</p>
-<a href="openlayers.html">View the Openlayers map...</a>
+
+	<a href="openlayers.html">View the OpenLayers map...</a>
 
 	<h3>Leaflet</h3>
-	<p class="code">var map = L.map('map');
+	<p class="code">var map = L.map('map' /* The id of the DOM element that will contain the map */);
 	
+map.setView([40.703312, -73.97968], 10);
+
 var baseLayer = L.tileLayer('https:/maps{s}.nyc.gov/tms/1.0.0/carto/basemap/{z}/{x}/{y}.jpg', {
   minNativeZoom: 8,
   maxNativeZoom: 19,
@@ -194,7 +206,8 @@ var labelLayer = L.tileLayer('https:/maps{s}.nyc.gov/tms/1.0.0/carto/label/{z}/{
 });
 
 map.addLayer(labelLayer);</p>
-<a href="leaflet.html">View the Leaflet map...</a>
+
+	<a href="leaflet.html">View the Leaflet map...</a>
 
 </body>
 </html>
