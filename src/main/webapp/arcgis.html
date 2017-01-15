@@ -29,50 +29,46 @@
 	<div id="map"></div>
 	<script>
 		require([
-			'esri/config',
 			'esri/Map',
 			'esri/views/MapView',
 			'esri/layers/WebTileLayer',
-			'dojo/dom',
+			'esri/geometry/Extent',
 			'dojo/domReady!'
-		], function(esriConfig, Map, MapView, WebTileLayer, dom) {
-	
-			esriConfig.request.corsEnabledServers.push(
-				'csgis1-stg-prx.csc.nycnet',
-				'csgis2-stg-prx.csc.nycnet',
-				'csgis3-stg-prx.csc.nycnet',
-				'csgis4-stg-prx.csc.nycnet'
-			);
-	
+		], function(Map, MapView, WebTileLayer, Extent){
+			
+			var TMSLayer = WebTileLayer.createSubclass({
+				getTileUrl: function(level, row, col){
+					var supermethod = this.getInherited(arguments);
+					var y = Math.pow(2, level) - row - 1;
+					return supermethod.call(this, level, y, col);
+				}
+			});
+
 			var map = new Map({});
 			
 			var view = new MapView({
-				container: 'map', /* The id of the DOM element that will contain the map */
+				container: 'map' /* The id of the DOM element that will contain the map */,
 				map: map,
 				center: [-73.97968, 40.703312],
 				zoom: 10
 			});
-	
-			var baseLayer = new WebTileLayer({
+			
+			var baseLayer = new TMSLayer({
 				urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/basemap/{level}/{col}/{row}.jpg',
 				subDomains: ['1', '2', '3', '4'],
-				fullExtent: [-75.9374, 39.3682, -71.7187, 42.0329],
-				minScale: 1066.3647917764529,
-				maxScale: 2183915.0935581755
+				fullExtent: new Extent({xmin: -8453323, ymin: 4774561, xmax: -7983695, ymax: 5165920})
 			});
 	
 			map.add(baseLayer);
 
-			var labelLayer = new WebTileLayer({
+			var labelLayer = new TMSLayer({
 				urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/label/{level}/{col}/{row}.png8',
 				subDomains: ['1', '2', '3', '4'],
-				fullExtent: [-74.2727, 40.0341, -71.9101, 41.2919],
-				minScale: 1066.3647917764529,
-				maxScale: 2183915.0935581755
+				fullExtent: new Extent({xmin: -8268000, ymin: 4870900, xmax: -8005000, ymax: 5055500})
 			});
 	
 			map.add(labelLayer);
-		});
+	});
 	</script>
 </body>
 </html>

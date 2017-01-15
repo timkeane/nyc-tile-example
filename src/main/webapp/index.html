@@ -14,25 +14,20 @@
 	<meta prefix="og: http:/ogp.me/ns#" property="og:description" content="NYC Map Tiles - How To">
 	<meta prefix="og: http:/ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">	
 	<title>NYC Map Tiles - How To</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 	<style>
+		html { 
+			background: url(img/mtc.png) no-repeat center center fixed; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
 		html, body {
 			font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
 		}
 		body {
 			padding-bottom: 3em;
-		}
-		#bg {
-			position: fixed;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			background-image: url(img/mtc.png);
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: auto 100%;
-			opacity: .15;
-			z-index: -1;
 		}
 		#banner {
 			display: inline-block;
@@ -73,8 +68,6 @@
 	</style>
 </head>
 <body>
-	<div id="bg"></div>
-	
 	<h1 id="banner"><span>maps.nyc.gov</span>&nbsp;</h1>	
 	<h1>Map Tiles: How To</h1>
 	
@@ -446,50 +439,45 @@ map.addLayer(labelLayer);</p>
 
 	<h3>ArcGIS</h3>
 	<p class="code">require([
-  'esri/config',
   'esri/Map',
   'esri/views/MapView',
   'esri/layers/WebTileLayer',
-  'dojo/dom',
+  'esri/geometry/Extent',
   'dojo/domReady!'
-], function(esriConfig, Map, MapView, WebTileLayer, dom) {
-
-  esriConfig.request.corsEnabledServers.push(
-    'maps1.nyc.gov',
-    'maps2.nyc.gov',
-    'maps3.nyc.gov',
-    'maps4.nyc.gov'
-  );
+], function(Map, MapView, WebTileLayer, Extent){
+  
+  var TMSLayer = WebTileLayer.createSubclass({
+    getTileUrl: function(level, row, col){
+      var supermethod = this.getInherited(arguments);
+      var y = Math.pow(2, level) - row - 1;
+      return supermethod.call(this, level, y, col);
+    }
+  });
 
   var map = new Map({});
   
   var view = new MapView({
-    container: 'map', /* The id of the DOM element that will contain the map */
+    container: 'map' /* The id of the DOM element that will contain the map */,
     map: map,
     center: [-73.97968, 40.703312],
     zoom: 10
   });
-
-  var baseLayer = new WebTileLayer({
-    urlTemplate: 'https://maps{subDomain}.nyc.gov/tms/1.0.0/carto/basemap/{level}/{col}/{row}.jpg',
+  
+  var baseLayer = new TMSLayer({
+    urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/basemap/{level}/{col}/{row}.jpg',
     subDomains: ['1', '2', '3', '4'],
-    fullExtent: [-75.9374, 39.3682, -71.7187, 42.0329],
-    minScale: 1066.3647917764529,
-    maxScale: 2183915.0935581755
+    fullExtent: new Extent({xmin: -8453323, ymin: 4774561, xmax: -7983695, ymax: 5165920})
   });
 
   map.add(baseLayer);
 
-
-  var labelLayer = new WebTileLayer({
-    urlTemplate: 'https://maps{subDomain}.nyc.gov/tms/1.0.0/carto/label/{level}/{col}/{row}.png8',
+  var labelLayer = new TMSLayer({
+    urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/label/{level}/{col}/{row}.png8',
     subDomains: ['1', '2', '3', '4'],
-    fullExtent: [-74.2727, 40.0341, -71.9101, 41.2919],
-    minScale: 1066.3647917764529,
-    maxScale: 2183915.0935581755
+    fullExtent: new Extent({xmin: -8268000, ymin: 4870900, xmax: -8005000, ymax: 5055500})
   });
-  
-  map.add(labelLayer);  
+
+  map.add(labelLayer);
 });</p>
 
 	<a href="arcgis.html">View the ArcGIS map...</a>
