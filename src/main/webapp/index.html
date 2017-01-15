@@ -8,7 +8,7 @@
 	<meta prefix="og: http:/ogp.me/ns#" property="og:title" content="NYC Map Tiles - How To">
 	<meta prefix="og: http:/ogp.me/ns#" property="og:type" content="website">
 	<meta prefix="og: http:/ogp.me/ns#" property="og:url" content="https://maps.nyc.gov/tiles">
-	<meta prefix="og: http:/ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/tiles/img/og.png">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/nyc-lib/archive/og.png">
 	<meta prefix="og: http:/ogp.me/ns#" property="og:image:width" content="1200">
 	<meta prefix="og: http:/ogp.me/ns#" property="og:image:height" content="626">
 	<meta prefix="og: http:/ogp.me/ns#" property="og:description" content="NYC Map Tiles - How To">
@@ -17,7 +17,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 	<style>
 		html { 
-			background: url(img/mtc.png) no-repeat center center fixed; 
+			background: url(/nyc-lib/archive/mtc.png) no-repeat center center fixed; 
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -29,10 +29,12 @@
 		body {
 			padding-bottom: 3em;
 		}
-		#banner {
+		h1 {
 			display: inline-block;
+		}
+		#banner {
 			width: 3.2em;
-			background-image: url(img/nyc.svg);
+			background-image: url(/nyc-lib/archive/nyc.svg);
 			background-repeat: no-repeat;
 			background-size: 3em;
 		}
@@ -42,9 +44,6 @@
 			top: 1em;
 			font-size: .44em;
 			font-weight: bold;
-		}
-		h1 {
-			display: inline-block;
 		}
 		ul.tms-info {
 			margin-top: .5em;
@@ -64,6 +63,13 @@
 			background-color: rgba(255,255,255,.6);
 			padding: .5em;
 			overflow: auto;
+		}
+		a, a:visited {
+			color: #000;
+			text-decoration: underline;
+		}
+		a:hover, a:active {
+			color: red !important;
 		}
 	</style>
 </head>
