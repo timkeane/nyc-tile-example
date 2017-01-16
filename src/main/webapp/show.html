@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:title" content="NYC Map Tiles">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:type" content="website">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:url" content="https://maps.nyc.gov/tiles">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/nyc-lib/archive/og.png">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image:width" content="1200">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image:height" content="626">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:description" content="NYC Map Tiles - Showcase">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">
+	<title>NYC Map Tiles</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.1/ol.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://csgis-stg-prx.csc.nycnet/nyc-lib/v0.2.4-SNAPSHOT/css/nyc-ol-lib.css">
+	<link rel="stylesheet" href="css/show.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.1/ol.js"></script>
+	<script src="https://csgis-stg-prx.csc.nycnet/nyc-lib/v0.2.4-SNAPSHOT/js/nyc-ol-lib.js"></script>
+</head>
+<body>
+	<h1>
+		<img src="/nyc-lib/archive/nyc.svg" atl="maps.nyc.gov">
+		Map Tiles
+		<a class="ctl ctl-btn" data-role="button" data-icon="none" data-iconpos="notext" onclick='document.location="./";'>
+			Info
+		</a>	
+	</h1>
+	<div id="map"></div>
+	<script>
+		var map, fade, swipe, lyrMgr;
+
+		$(document).ready(function(){
+			new nyc.Share('#map');
+			
+			map = new nyc.ol.Basemap({target: $('#map').get(0)});
+
+			var source = new ol.source.Vector();
+			var layer = new ol.layer.Vector({
+				source: source,
+				style: [new ol.style.Style({
+						image: new ol.style.Icon({
+						scale: 48 / 512,
+						src: 'img/me' +  (nyc.util.isIe() || nyc.util.isIos() ? '.png' : '.svg')
+					})
+				})]
+			});
+			map.addLayer(layer);
+
+			/* See README.md for getting your GeoClient App Id and App Key */
+			var geocoder = new nyc.Geoclient(
+				'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+			);
+
+			new nyc.LocationMgr({
+				controls: new nyc.ol.control.ZoomSearch(map),
+				locate: new nyc.ol.Locate(geocoder),
+				locator: new nyc.ol.Locator({map: map, layer: layer})
+			});
+
+			swipe = new nyc.ol.control.LayerSwipe({map: map});
+			lyrMgr = new nyc.ol.control.LayerMgr({map: map});
+			fade = new nyc.ol.control.LayerFade({map: map});
+
+ 			$('.btn-swipe, .btn-lyr-mgr').click(function(){
+ 				fade.cancel();
+ 			});
+ 			$('.btn-fade, .btn-lyr-mgr').click(function(){
+ 				swipe.cancel();
+ 			});
+ 			$('.btn-swipe, .btn-fade').click(function(){
+ 				lyrMgr.clear();
+ 			});
+ 			$('.btn-lyr-mgr').click(function(){
+ 				$.each(lyrMgr.controls, function(_, control){
+ 					control.trigger('change', control.val());
+ 				});
+			});
+		});
+	</script>
+</body>
+</html>
