@@ -34,7 +34,7 @@ h1 a {
 	background-repeat: no-repeat;
 	background-position: center;
 }
-div.fld-srch-container {
+div.fld-srch-container, .ctl-mun {
 	right: 44px;
 }
 div.z-srch, .btn-lyr-mgr {
@@ -45,4 +45,18 @@ div.z-srch, .btn-lyr-mgr {
 }
 .btn-fade {
 	top: 128px;
+}
+div.ctl-mnu-tgl {
+	right: 43px;
+	top: 48px;
+}
+@media only screen and (max-width : 400px) {
+	div.ctl-mnu-tgl {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: auto;
+		width: auto;
+		max-width: 100%;
+	}	
 }
