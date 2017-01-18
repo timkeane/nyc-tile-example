@@ -42,6 +42,7 @@
 			map = new nyc.ol.Basemap({target: $('#map').get(0)});
 
 			var source = new ol.source.Vector();
+			
 			var layer = new ol.layer.Vector({
 				source: source,
 				style: [new ol.style.Style({
@@ -51,6 +52,7 @@
 					})
 				})]
 			});
+			
 			map.addLayer(layer);
 
 			/* See README.md for getting your GeoClient App Id and App Key */
@@ -69,18 +71,31 @@
 			fade = new nyc.ol.control.LayerFade({map: map});
 
  			$('.btn-swipe, .btn-lyr-mgr').click(function(){
+				$('#share-btn, a.info').animate({bottom: '3px'});
  				fade.cancel();
  			});
+ 			
  			$('.btn-fade, .btn-lyr-mgr').click(function(){
+				$('#share-btn, a.info').animate({bottom: '3px'});
  				swipe.cancel();
  			});
+ 			
  			$('.btn-swipe, .btn-fade').click(function(){
+				$('#share-btn, a.info').animate({bottom: '3px'});
  				lyrMgr.clear();
  			});
+ 			
  			$('.btn-lyr-mgr').click(function(){
+ 				$('#share-btn, a.info').animate({bottom: '3px'});
  				$.each(lyrMgr.controls, function(_, control){
  					control.trigger('change', control.val());
  				});
+			});
+ 			
+			$('.mnu-fade .btn-manual, .mnu-fade .btn-auto').click(function(){
+				if ($('.fade-progress').css('display') == 'block'){
+					$('#share-btn, a.info').animate({bottom: '27px'});
+				}
 			});
 		});
 	</script>
