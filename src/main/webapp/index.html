@@ -491,7 +491,7 @@ map.addLayer(labelLayer);</p>
   });
   
   var baseLayer = new TMSLayer({
-    urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/basemap/{level}/{col}/{row}.jpg',
+    urlTemplate: 'http://maps{subDomain}.nyc.gov/tms/1.0.0/carto/basemap/{level}/{col}/{row}.jpg',
     subDomains: ['1', '2', '3', '4'],
     fullExtent: new Extent({xmin: -8453323, ymin: 4774561, xmax: -7983695, ymax: 5165920})
   });
@@ -499,7 +499,7 @@ map.addLayer(labelLayer);</p>
   map.add(baseLayer);
 
   var labelLayer = new TMSLayer({
-    urlTemplate: 'http://csgis{subDomain}-stg-prx.csc.nycnet/tms/1.0.0/carto/label/{level}/{col}/{row}.png8',
+    urlTemplate: 'http://maps{subDomain}.nyc.gov/tms/1.0.0/carto/label/{level}/{col}/{row}.png8',
     subDomains: ['1', '2', '3', '4'],
     fullExtent: new Extent({xmin: -8268000, ymin: 4870900, xmax: -8005000, ymax: 5055500})
   });
