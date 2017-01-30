@@ -7,10 +7,12 @@ html, body, h1, #map {
 h1, #map {
 	position: fixed;
 }
-h1 {
+.ui-mobile-viewport h1, .ui-mobile-viewport sup {
+	color: rgba(0,0,0,.5);
+}
+.ui-mobile-viewport h1 {
 	bottom: calc(100% - 45px);
 	background-color: rgba(255,255,255,.5);
-	color: rgba(0,0,0,.5);
 	margin: 0;
 	padding: 8px 0 0 83px;
 	font-size: 24px;
