@@ -53,6 +53,9 @@ div.ctl-mnu-tgl {
 	right: 43px;
 	top: 48px;
 }
+.mnu-swipe.ctl-mnu-tgl .ui-collapsible-content, .mnu-lyr-mgr.ctl-mnu-tgl .ui-collapsible-content {
+    max-height: 398px;
+}
 @media only screen and (max-width : 400px) {
 	div.ctl-mnu-tgl {
 		left: 0;
