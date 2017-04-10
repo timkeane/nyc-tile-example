@@ -16,14 +16,14 @@
 	<meta prefix="og: http:/ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">
 	<title>NYC Map Tiles</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.1/ol.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://csgis-stg-prx.csc.nycnet/nyc-lib/v0.2.4-SNAPSHOT/css/nyc-ol-lib.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.css" rel="stylesheet">
+	<link rel="stylesheet" href="/nyc-lib/v0.2.4-SNAPSHOT/css/nyc-ol-lib.css">
 	<link rel="stylesheet" href="css/show.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.1/ol.js"></script>
-	<script src="https://csgis-stg-prx.csc.nycnet/nyc-lib/v0.2.4-SNAPSHOT/js/nyc-ol-lib.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.js"></script>
+	<script src="/nyc-lib/v0.2.4-SNAPSHOT/js/nyc-ol-lib.js"></script>
 </head>
 <body>
 	<h1>
@@ -58,7 +58,7 @@
 
 			/* See README.md for getting your GeoClient App Id and App Key */
 			var geocoder = new nyc.Geoclient(
-				'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+				'/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
 			);
 
 			new nyc.LocationMgr({

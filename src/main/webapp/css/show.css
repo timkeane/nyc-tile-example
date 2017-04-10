@@ -66,3 +66,8 @@ div.ctl-mnu-tgl {
 		max-width: 100%;
 	}	
 }
+@media only screen and (min-height : 400px) {
+	div.ctl-mnu-tgl {
+		max-height: calc(100% - 50px);
+	}	
+}
