@@ -52,6 +52,7 @@ div.z-srch, .btn-lyr-mgr {
 div.ctl-mnu-tgl {
 	right: 43px;
 	top: 48px;
+	max-height: calc(100% - 50px);
 }
 .mnu-swipe.ctl-mnu-tgl .ui-collapsible-content, .mnu-lyr-mgr.ctl-mnu-tgl .ui-collapsible-content {
     max-height: 398px;
@@ -64,10 +65,5 @@ div.ctl-mnu-tgl {
 		height: auto;
 		width: auto;
 		max-width: 100%;
-	}	
-}
-@media only screen and (min-height : 400px) {
-	div.ctl-mnu-tgl {
-		max-height: calc(100% - 50px);
 	}	
 }

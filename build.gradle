@@ -1,0 +1,74 @@
+import gov.nyc.doitt.nyc.gis.gradle.*
+
+plugins {
+    id 'base'
+    id 'org.hidetake.ssh' version '1.1.2'
+}
+
+ext {
+	appName = 'nyc-tile-example'
+	ver = 'v0.1.0'
+	pkgDir = "${buildDir}/${appName}/${ver}"
+	remoteDir = 'tiles'
+}
+
+task copyFiles() {
+	file(pkgDir).mkdirs()
+	copy {
+		from 'src/main/webapp'
+		into pkgDir
+	}
+	println 'replaceHostName.doFirst ' +  file("${pkgDir}/openlayers.html").exists()
+}
+
+task replaceHostName(dependsOn: [copyFiles]) {
+	def tilehost = project.hasProperty('tilehost') ? project.getProperty('tilehost') : ''
+	if (tilehost != ''){
+		ant.taskdef(name: 'replace', classname: 'org.apache.tools.ant.taskdefs.Replace')
+		def olTilehost = (tilehost =~ /\-/).replaceFirst('{1-4}-')
+		def leafTilehost = (tilehost =~ /\-/).replaceFirst('{s}-')
+		def arcTilehost = (tilehost =~ /\-/).replaceFirst('{subDomain}-')
+		ant.replace(file: "${pkgDir}/openlayers.html", token: 'maps{1-4}.nyc.gov', value: olTilehost)
+		ant.replace(file: "${pkgDir}/leaflet.html", token: 'maps{s}.nyc.gov', value: leafTilehost)
+		ant.replace(file: "${pkgDir}/arcgis.html", token: 'maps{subDomain}.nyc.gov', value: arcTilehost)
+		ant.replace(file: "${pkgDir}/index.html", token: 'maps{1-4}.nyc.gov', value: olTilehost)
+		ant.replace(file: "${pkgDir}/index.html", token: 'maps{s}.nyc.gov', value: leafTilehost)
+		ant.replace(file: "${pkgDir}/index.html", token: 'maps{subDomain}.nyc.gov', value: arcTilehost)		
+		ant.replace(file: "${pkgDir}/index.html", token: 'https://maps.nyc.gov', value: "https://${tilehost}")
+	}
+}
+
+task archive(type: Zip, dependsOn: [replaceHostName]) {
+	archiveName = "nyc-tile-example-${ver}.zip"
+	from {pkgDir}
+}
+
+remotes {
+	deployTarget {}
+}
+
+task deploy(dependsOn: [archive]) << {
+	def mobileDir = project.ext['mobile.dir']
+	def archiveDir = "${mobileDir}/${appName}/archive"
+	def deployDir = "${mobileDir}/${remoteDir}"
+	
+	remotes.deployTarget.host = project.ext["${env}.host"]
+    remotes.deployTarget.user = project.ext["${env}.user"]	
+    remotes.deployTarget.identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+	
+	ssh.run {
+        session(remotes.deployTarget) {
+        	execute "mkdir -p ${archiveDir}"
+        	execute "mkdir -p ${deployDir}"
+            put "build/distributions/${archive.archiveName}", archiveDir
+            execute "cp -R ${deployDir} ${deployDir}.bak"
+            execute "rm -rf ${deployDir}"
+            execute "unzip ${archiveDir}/${archive.archiveName} -d ${deployDir}"
+            execute "rm -rf ${deployDir}.bak"
+		}
+	}
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion '3.1'
+}

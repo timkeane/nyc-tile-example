@@ -32,7 +32,7 @@
 		
 		map.setView([40.703312, -73.97968], 10);
 		
-		var baseLayer = L.tileLayer('https://csgis{s}-stg-prx.csc.nycnet/tms/1.0.0/carto/basemap/{z}/{x}/{y}.jpg', {
+		var baseLayer = L.tileLayer('https://maps{s}.nyc.gov/tms/1.0.0/carto/basemap/{z}/{x}/{y}.jpg', {
 			minNativeZoom: 8,
 			maxNativeZoom: 19,
 			subdomains: '1234',
@@ -42,7 +42,7 @@
 		
 		map.addLayer(baseLayer);
 		
-		var labelLayer = L.tileLayer('https://csgis{s}-stg-prx.csc.nycnet/tms/1.0.0/carto/label/{z}/{x}/{y}.png8', {
+		var labelLayer = L.tileLayer('https://maps{s}.nyc.gov/tms/1.0.0/carto/label/{z}/{x}/{y}.png8', {
 			minNativeZoom: 8,
 			maxNativeZoom: 19,
 			subdomains: '1234',
