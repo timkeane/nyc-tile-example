@@ -84,10 +84,38 @@
 </head>
 <body>
 	<h1 id="banner"><span>maps.nyc.gov</span>&nbsp;</h1>	
-	<h1>Map Tiles</h1>
+	<h1>Map Tiles<sup> &#946;</sup></h1>
 	
 	<p>Try the <a href="show.html">showcase app</a>!</p>
 	
+	<h2>Table of Contents</h2>
+	<ul>
+		<li><a href="#background">Background</a></li>
+		<li>
+			<a href="#tms">Tile Map Service</a>
+			<ul>
+				<li><a href="#basemap-layers">Basemap Tile Layers</a></li>
+				<li><a href="#aerial-layers">Aerial Photography Tile Layers</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#js">Javascript How To</a>
+			<ul>
+				<li><a href="#ol">OpenLayers</a></li>
+				<li><a href="#leaf">Leaflet</a></li>
+				<li><a href="#leaf">ArcGIS</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#desk">Desktop How To</a>
+			<ul>
+				<li><a href="#qgis">QGIS</a></li>
+				<li><a href="#arcmap">ArcMap</a></li>
+			</ul>
+		</li>
+	</ul>
+	
+	<a name="background"></a>
 	<h2>Background</h2>
 	<p>
 		<a href="https://en.wikipedia.org/wiki/Orthophoto">Digital orthophotography</a> (orthos) for NYC has been captured on a biennial basis since 2004. Prior to that there were two ad-hoc captures starting with 1996. 
@@ -100,7 +128,12 @@
 		<a href="https://github.com/CityOfNewYork/nyc-planimetrics/blob/master/Capture_Rules.md">Click here for further details on the planimetric data</a>.  
 	</p>
 	
+	<a name="tms"></a>
 	<h2>Tile Map Service</h2>
+	<p>
+		<b>Service Description:</b>
+		<a class="code" href="https://maps.nyc.gov/tms/1.0.0/carto/">https://maps.nyc.gov/tms/1.0.0/carto/</a>
+	</p>
 	<p>
 		The GIS team at NYC's Department of Information Technology has published a new <a href="https://wiki.osgeo.org/wiki/Main_Page">Open Source Geospatial Foundation</a> standard
 		<a href="https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification">tile map service (TMS)</a> using <a href="http://geoserver.org/">GeoServer</a>
@@ -111,11 +144,17 @@
 	<p>
 		Note: Basemap tiles containing changing features based on NYC street centerline and building data will be updated on a quarterly basis.  
 	</p>	
-	<h3>Basemap  Tile Layers</h3>
+
+	<a name="basemap-layers"></a>
+	<h3>Basemap Tile Layers</h3>
 	<ul>
 		<li>
 			<b>basemap</b>
 			<ul class="tms-info">
+				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/carto/basemap/service.xml">https://maps.nyc.gov/tms/1.0.0/carto/basemap/service.xml</a>
+				</li>
 				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/carto/basemap/</span>
@@ -139,9 +178,14 @@
 			<b>label</b>
 			<ul class="tms-info">
 				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/carto/label/service.xml">https://maps.nyc.gov/tms/1.0.0/carto/label/service.xml</a>
+				</li>
+				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/carto/label/</span>
 				</li>
+				<li>
 				<li>
 					<b>Format:</b>
 					<span class="code">image/png8</span>
@@ -159,11 +203,16 @@
 		</li>
 	</ul>
 		
+	<a name="aerial-layers"></a>
 	<h3>Aerial Photography Tile Layers</h3>
 	<ul>
 		<li>
 			<b>label-lt</b>
 			<ul class="tms-info">
+				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/carto/label/service.xml">https://maps.nyc.gov/tms/1.0.0/carto/label/service.xml</a>
+				</li>
 				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/carto/label-lt/</span>
@@ -187,6 +236,10 @@
 			<b>2016</b>
 			<ul class="tms-info">
 				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/2016/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/2016/service.xml</a>
+				</li>
+				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/2016/</span>
 				</li>
@@ -208,6 +261,10 @@
 		<li>
 			<b>2014</b>
 			<ul class="tms-info">
+				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/2014/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/2014/service.xml</a>
+				</li>
 				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/2014/</span>
@@ -231,6 +288,10 @@
 			<b>2012</b>
 			<ul class="tms-info">
 				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/2012/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/2012/service.xml</a>
+				</li>
+				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/2012/</span>
 				</li>
@@ -252,6 +313,10 @@
 		<li>
 			<b>2010</b>
 			<ul class="tms-info">
+				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/2010/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/2010/service.xml</a>
+				</li>
 				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/2010/</span>
@@ -275,6 +340,10 @@
 			<b>2008</b>
 			<ul class="tms-info">
 				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/2008/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/2008/service.xml</a>
+				</li>
+				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/2008/</span>
 				</li>
@@ -296,6 +365,10 @@
 		<li>
 			<b>2006</b>
 			<ul class="tms-info">
+				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/2006/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/2006/service.xml</a>
+				</li>
 				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/2006/</span>
@@ -319,6 +392,10 @@
 			<b>2004</b>
 			<ul class="tms-info">
 				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/2004/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/2004/service.xml</a>
+				</li>
+				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/2004/</span>
 				</li>
@@ -340,6 +417,10 @@
 		<li>
 			<b>2001-2</b>
 			<ul class="tms-info">
+				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/2001-2/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/2001-2/service.xml</a>
+				</li>
 				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/2001-2/</span>
@@ -363,6 +444,10 @@
 			<b>1996</b>
 			<ul class="tms-info">
 				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/1996/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/1996/service.xml</a>
+				</li>
+				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/1996/</span>
 				</li>
@@ -384,6 +469,10 @@
 		<li>
 			<b>1951</b>
 			<ul class="tms-info">
+				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/1951/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/1951/service.xml</a>
+				</li>
 				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/1951/</span>
@@ -407,6 +496,10 @@
 			<b>1924</b>
 			<ul class="tms-info">
 				<li>
+					<b>Service Description:</b>
+					<a class="code" href="https://maps.nyc.gov/tms/1.0.0/photo/1924/service.xml">https://maps.nyc.gov/tms/1.0.0/photo/1924/service.xml</a>
+				</li>
+				<li>
 					<b>URI:</b>
 					<span class="code">https://maps.nyc.gov/tms/1.0.0/photo/1924/</span>
 				</li>
@@ -427,6 +520,7 @@
 		</li>
 	</ul>
 
+	<a name="js"></a>
 	<h2>Javascript How To</h2>
 	<p>
 		Below are some basic examples that show how to use the NYC Map Tiles in a web page.  Please note the extent limits placed on the layers. 
@@ -439,6 +533,7 @@
 		JavaScript libraries please see <a href="/nyc-lib/">https://maps.nyc.gov/nyc-lib/</a>.
 	</p>
 	
+	<a name="ol"></a>
 	<h3>OpenLayers</h3>
 	<p class="code">var view = new ol.View({
   center: [-8235252, 4969073],
@@ -469,6 +564,7 @@ var map = new ol.Map({
 
 	<a href="openlayers.html">View the OpenLayers map...</a>
 
+	<a name="leaf"></a>
 	<h3>Leaflet</h3>
 	<p class="code">var map = L.map('map' /* The id of the DOM element that will contain the map */);
 	
@@ -496,6 +592,7 @@ map.addLayer(labelLayer);</p>
 
 	<a href="leaflet.html">View the Leaflet map...</a>
 
+	<a name="arcgis"></a>
 	<h3>ArcGIS</h3>
 	<p class="code">require([
   'esri/Map',
@@ -541,7 +638,11 @@ map.addLayer(labelLayer);</p>
 
 	<a href="arcgis.html">View the ArcGIS map...</a>
 
-	<h2>QGIS How To</h2>
+	<a name="desk"></a>
+	<h2>Desktop How To</h2>
+	
+	<a name="qgis"></a>
+	<h3>QGIS How To</h3>
 	<p>
 		<ol>
 			<li>Download and install QGIS from <a href="http://www.qgis.org/en/site/forusers/download.html">http://www.qgis.org/en/site/forusers/download.html</a></li>
@@ -570,7 +671,8 @@ map.addLayer(labelLayer);</p>
 		</ol>
 	</p>
 
-	<h2>ArcMap How To</h2>
+	<a name="arcmap"></a>
+	<h3>ArcMap How To</h3>
 	<p>
 		<ol>
 			<li>Install ArcMap version 10.x</li>
@@ -580,14 +682,16 @@ map.addLayer(labelLayer);</p>
 			<li>Run the setup.exe program that you unzipped to install the extension</li>
 			<li>Open ArcMap</li>
 			<li>Click the <b>View</b> menu and choose <b>Data Frame Properties...</b></li>
+			<li>Click the <b>Coordinate System</b> tab</li>
 			<li>Enter <b>3857</b> in the <b>Type here to search</b> field and press the <b>Enter</b> key</li>
 			<li>Click the <b>OK</b> button</li>
+			<li>Add a NYC dataset to your view to avoid having ArcMap try to load tiles for the entire planet</li>
 			<li>Right-click on the ArcMap toolbar and choose <b>ArcBruTile</b> from the menu to enable the ArcBruTile toolbar</li>
 			<li>Open the <b>ArcBruTile</b> menu and choose <b>Add TMS service...</b></li>
-			<li>In the <b>Add TMS service</b> dialog click the <b>Add providor</b> button</li>
-			<li>In the <b>Add TMS Providor</b> dialog enter a name for your service in the <b>Name</b> field</li>
-			<li>In the <b>Add TMS Providor</b> dialog enter <b>https://maps.nyc.gov/tms/1.0.0/</b> in the <b>Url</b> field</li>
-			<li>In the <b>Add TMS Providor</b> dialog click the <b>Add providor</b> button</li>
+			<li>Click the <b>Add providor</b> button in the <b>Add TMS service</b> dialog</li>
+			<li>In the <b>Add TMS Providor</b> dialog, enter a name for your service in the <b>Name</b> field</li>
+			<li>In the <b>Add TMS Providor</b> dialog, enter <b>https://maps.nyc.gov/tms/1.0.0/</b> in the <b>Url</b> field</li>
+			<li>In the <b>Add TMS Providor</b> dialog, click the <b>Add providor</b> button</li>
 			<li>Choose a TMS service from the <b>Services</b> list</li>
 			<li>Click the <b>Add Selected Service</b> button</li>
 		</ol>
