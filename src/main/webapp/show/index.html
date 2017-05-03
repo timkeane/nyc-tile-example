@@ -89,19 +89,24 @@
 			lyrMgr = new nyc.ol.control.LayerMgr({map: map});
 			fade = new nyc.ol.control.LayerFade({map: map});
 
- 			$('.btn-swipe, .btn-lyr-mgr').click(function(){
+			function buttonsDown(){
 				$('#share-btn, a.info').animate({bottom: '3px'});
+				$('#share-btns').animate({bottom: '-2px'});
+			};
+			
+ 			$('.btn-swipe, .btn-lyr-mgr').click(function(){
+ 				buttonsDown();
  				fade.cancel();
  			});
  			
  			$('.btn-fade, .btn-lyr-mgr').click(function(){
-				$('#share-btn, a.info').animate({bottom: '3px'});
+ 				buttonsDown();
  				swipe.cancel();
  			});
  			
  			$('.btn-swipe, .btn-fade').click(function(){
-				$('#share-btn, a.info').animate({bottom: '3px'});
- 				lyrMgr.clear();
+ 				buttonsDown();
+				lyrMgr.clear();
  			});
  			
  			$('.btn-lyr-mgr').click(function(){
@@ -114,6 +119,7 @@
 			$('.mnu-fade .btn-manual, .mnu-fade .btn-auto').click(function(){
 				if ($('.fade-progress').css('display') == 'block'){
 					$('#share-btn, a.info').animate({bottom: '27px'});
+					$('#share-btns').animate({bottom: '22px'});
 				}
 			});
 			
