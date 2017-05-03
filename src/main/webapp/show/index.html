@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:title" content="NYC Then & Now">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:type" content="website">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:url" content="https://maps.nyc.gov/tiles/then&now/">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/tiles/img/og.png">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image:width" content="1200">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:image:height" content="626">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:description" content="NYC Then & Now - Aerial photography of New York City throughout the years">
+	<meta prefix="og: http:/ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">
+	<title>NYC Then & Now</title>
+	<link rel="manifest" href="manifest.webmanifest">
+	<link rel="apple-touch-startup-image" href="img/icon-512.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/icon-60.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icon-76.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icon-120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon-152.png">	
+	<link rel="apple-touch-icon" sizes="167x167" href="img/icon-167.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icon-180.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.css" rel="stylesheet">
+	<link rel="stylesheet" href="/nyc-lib/v0.2.4-SNAPSHOT/css/nyc-ol-lib.css">
+	<link rel="stylesheet" href="css/then-now.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.js"></script>
+	<script src="/nyc-lib/v0.2.4-SNAPSHOT/js/nyc-ol-lib.js"></script>
+</head>
+<body>
+	<h1>
+		<img src="img/nyc.svg" atl="maps.nyc.gov" onclick='document.location.reload();'>
+		Then<span>&</span>Now
+	</h1>
+	<div id="map"></div>
+	<a class="ctl ctl-btn info" data-role="button" data-icon="none" data-iconpos="notext" onclick='document.location="../tiles/";'>
+		Info
+	</a>	
+	<div id="splash">
+		<div>
+			<a><span class="noshow">Close</span></a>
+		</div>
+	</div>
+	<script>
+		var map, fade, swipe, lyrMgr;
+
+		nyc.ol.style.LOCATION_ICON = new ol.style.Icon({
+			scale: 48 / 512,
+			src: nyc.util.isIe() || nyc.util.isIos() ? 'img/me.png' : 'img/me.svg'
+		});
+				
+		$(document).ready(function(){
+			new nyc.Share('#map');
+			
+			map = new nyc.ol.Basemap({target: $('#map').get(0)});
+
+			var source = new ol.source.Vector();
+			
+			var layer = new ol.layer.Vector({
+				source: source,
+				style: [new ol.style.Style({
+						image: new ol.style.Icon({
+						scale: 48 / 512,
+						src: 'img/me' + (nyc.util.isIe() || nyc.util.isIos() ? '.png' : '.svg')
+					})
+				})]
+			});
+			
+			map.addLayer(layer);
+
+			/* See https://github.com/timkeane/nyc-lib/blob/master/README.md for getting your GeoClient App Id and App Key */
+			var geocoder = new nyc.Geoclient(
+				'/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+			);
+
+			new nyc.LocationMgr({
+				controls: new nyc.ol.control.ZoomSearch(map),
+				locate: new nyc.ol.Locate(geocoder),
+				locator: new nyc.ol.Locator({map: map, layer: layer})
+			});
+
+			swipe = new nyc.ol.control.LayerSwipe({map: map});
+			lyrMgr = new nyc.ol.control.LayerMgr({map: map});
+			fade = new nyc.ol.control.LayerFade({map: map});
+
+ 			$('.btn-swipe, .btn-lyr-mgr').click(function(){
+				$('#share-btn, a.info').animate({bottom: '3px'});
+ 				fade.cancel();
+ 			});
+ 			
+ 			$('.btn-fade, .btn-lyr-mgr').click(function(){
+				$('#share-btn, a.info').animate({bottom: '3px'});
+ 				swipe.cancel();
+ 			});
+ 			
+ 			$('.btn-swipe, .btn-fade').click(function(){
+				$('#share-btn, a.info').animate({bottom: '3px'});
+ 				lyrMgr.clear();
+ 			});
+ 			
+ 			$('.btn-lyr-mgr').click(function(){
+ 				$('#share-btn, a.info').animate({bottom: '3px'});
+ 				$.each(lyrMgr.controls, function(_, control){
+ 					control.trigger('change', control.val());
+ 				});
+			});
+ 			
+			$('.mnu-fade .btn-manual, .mnu-fade .btn-auto').click(function(){
+				if ($('.fade-progress').css('display') == 'block'){
+					$('#share-btn, a.info').animate({bottom: '27px'});
+				}
+			});
+			
+			$(map.getTarget()).append($('a.info'));
+			
+			$(document).one('click', function(){
+				$('#splash').fadeOut();
+			})
+		});
+	</script>
+</body>
+</html>
