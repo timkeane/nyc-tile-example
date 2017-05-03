@@ -1,0 +1,14 @@
+basemap	NYCTMS	https://maps.nyc.gov/tms/1.0.0/carto/basemap/{z}/{x}/{y}.jpg	0	8	21
+label	NYCTMS	https://maps.nyc.gov/tms/1.0.0/carto/label/{z}/{x}/{y}.png8	0	8	21
+label-lt	NYCTMS	https://maps.nyc.gov/tms/1.0.0/carto/label-lt/{z}/{x}/{y}.png8	0	8	21
+2016	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/2016/{z}/{x}/{y}.png8	0	8	21
+2014	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/2014/{z}/{x}/{y}.png8	0	8	21
+2012	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/2012/{z}/{x}/{y}.png8	0	8	21
+2010	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/2010/{z}/{x}/{y}.png8	0	8	21
+2008	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/2008/{z}/{x}/{y}.png8	0	8	21
+2006	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/2006/{z}/{x}/{y}.png8	0	8	21
+2004	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/2004/{z}/{x}/{y}.png8	0	8	21
+2001-2	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/2001-2/{z}/{x}/{y}.png8	0	8	21
+1996	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/1996/{z}/{x}/{y}.png8	0	8	21
+1951	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/1951/{z}/{x}/{y}.png8	0	8	21
+1924	NYCTMS	https://maps.nyc.gov/tms/1.0.0/photo/1924/{z}/{x}/{y}.png8	0	8	21

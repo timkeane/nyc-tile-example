@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta prefix="og: http://ogp.me/ns#" property="og:title" content="NYC Map Tiles - How To">
+	<meta prefix="og: http://ogp.me/ns#" property="og:type" content="website">
+	<meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://maps.nyc.gov/tiles">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/tiles/img/og.png">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1200">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="626">
+	<meta prefix="og: http://ogp.me/ns#" property="og:description" content="NYC Map Tiles - How To">
+	<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">	
+	<title>NYC Map Tiles - Leaflet Example</title>
+	<link rel="manifest" href="manifest.webmanifest">
+	<link rel="apple-touch-startup-image" href="img/icon-512.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/icon-60.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icon-76.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icon-120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon-152.png">	
+	<link rel="apple-touch-icon" sizes="167x167" href="img/icon-167.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icon-180.png">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.css" rel="stylesheet">
+	<style>
+		html, body, #map {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.js"></script>
+</head>
+<body>
+	<div id="map"></div>
+	<script>
+		var map = L.map('map' /* The id of the DOM element that will contain the map */);
+		
+		map.setView([40.703312, -73.97968], 10);
+		
+		var baseLayer = L.tileLayer('https://csgis{s}-stg-prx.csc.nycnet/tms/1.0.0/carto/basemap/{z}/{x}/{y}.jpg', {
+			minNativeZoom: 8,
+			maxNativeZoom: 19,
+			subdomains: '1234',
+			tms: true,
+			bounds: L.latLngBounds([39.3682, -75.9374], [42.0329, -71.7187])
+		});
+		
+		map.addLayer(baseLayer);
+		
+		var labelLayer = L.tileLayer('https://csgis{s}-stg-prx.csc.nycnet/tms/1.0.0/carto/label/{z}/{x}/{y}.png8', {
+			minNativeZoom: 8,
+			maxNativeZoom: 19,
+			subdomains: '1234',
+			tms: true,
+			bounds: L.latLngBounds([40.0341, -74.2727], [41.2919, -71.9101])
+		});
+		
+		map.addLayer(labelLayer);
+	</script>
+</body>
+</html>
