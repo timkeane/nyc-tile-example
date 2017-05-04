@@ -10,6 +10,10 @@ h1, #map, #splash {
 	position: fixed;
 }
 
+#splash {
+	display: none;
+}
+
 #splash div {
 	background-color: #ffb500;
 	width: calc(50% - 40px);
