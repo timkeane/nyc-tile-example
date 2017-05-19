@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -92,7 +92,7 @@
 	<h1 id="banner"><span>maps.nyc.gov</span>&nbsp;</h1>	
 	<h1>Map Tiles<sup> &#946;</sup></h1>
 	
-	<p>Try the showcase app... <a href="../then&now/">NYC Then & Now</a></p>
+	<p>Try the showcase app... <a href="../then&now/">NYC Then &amp; Now</a></p>
 	
 	<h2>Table of Contents</h2>
 	<ul class="toc">
@@ -100,16 +100,52 @@
 		<li>
 			<a href="#tms">Tile Map Service</a>
 			<ul>
-				<li><a href="#basemap-layers">Basemap Tile Layers</a></li>
-				<li><a href="#aerial-layers">Aerial Photography Tile Layers</a></li>
+				<li><a href="#basemap-layers-tms">Basemap Tile Layers (TMS)</a></li>
+				<li><a href="#aerial-layers-tms">Aerial Photography Tile Layers (TMS)</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#xyz">Slippy Map Service</a>
+			<ul>
+				<li><a href="#basemap-layers-xyz">Basemap Tile Layers (XYZ)</a></li>
+				<li><a href="#aerial-layers-xyz">Aerial Photography Tile Layers (XYZ)</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#wmts">Web Map Tile Service</a>
+			<ul>
+				<li><a href="#basemap-layers-wmts">Basemap Tile Layers (WMTS)</a></li>
+				<li><a href="#aerial-layers-wmts">Aerial Photography Tile Layers (WMTS)</a></li>
 			</ul>
 		</li>
 		<li>
 			<a href="#js">Javascript How To</a>
 			<ul>
-				<li><a href="#ol">OpenLayers</a></li>
-				<li><a href="#leaf">Leaflet</a></li>
-				<li><a href="#arcgis">ArcGIS</a></li>
+				<li>
+					<a href="#ol">OpenLayers</a>
+					<ul>
+						<li><a href="#ol">TMS</a></li>
+						<li><a href="#ol-xyz">XYZ</a></li>
+						<li><a href="#ol-wmts">WMTS</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#leaf">Leaflet</a>
+					<ul>
+						<li><a href="#leaf">TMS</a></li>
+						<li><a href="#leaf-xyz">XYZ</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#arcgis">ArcGIS</a>
+					<ul>
+						<li><a href="#arcgis">ArcGIS 4.x TMS</a></li>
+						<li><a href="#arcgis4-xyz">ArcGIS 4.x XYZ</a></li>
+						<li><a href="#arcgis3-tms">ArcGIS 3.x TMS</a></li>
+						<li><a href="#arcgis3-xyz">ArcGIS 3.x XYZ</a></li>
+						<li><a href="#arcgis3-wmts">ArcGIS 3.x WMTS</a></li>
+					</ul>
+				</li>
 			</ul>
 		</li>
 		<li>
@@ -121,8 +157,7 @@
 		</li>
 	</ul>
 	
-	<a name="background"></a>
-	<h2>Background</h2>
+	<h2 id="background">Background</h2>
 	<p>
 		<a href="https://en.wikipedia.org/wiki/Orthophoto">Digital orthophotography</a> (orthos) for NYC has been captured on a biennial basis since 2004. Prior to that there were two ad-hoc captures starting with 1996. 
 		The orthos have evolved over the years from 1-foot pixel resolution, with selective true ortho, to 6-inch pixel resolution with full true orthos. These image data sets, along with additional aerial photography 
@@ -134,15 +169,14 @@
 		<a href="https://github.com/CityOfNewYork/nyc-planimetrics/blob/master/Capture_Rules.md">Click here for further details on the planimetric data</a>.  
 	</p>
 	
-	<a name="tms"></a>
-	<h2>Tile Map Service</h2>
+	<h2 id="tms">Tile Map Service</h2>
 	<p>
 		<b>Service Description:</b>
 		<a class="code" href="https://maps.nyc.gov/tms/1.0.0/">https://maps.nyc.gov/tms/1.0.0/</a>
 	</p>
 	<p>
 		The GIS team at NYC's Department of Information Technology has published a new <a href="https://wiki.osgeo.org/wiki/Main_Page">Open Source Geospatial Foundation</a> standard
-		<a href="https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification">tile map service (TMS)</a> using <a href="http://geoserver.org/">GeoServer</a>
+		<a href="https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification">Tile Map Service (TMS)</a> using <a href="http://geoserver.org/">GeoServer</a>
 		and <a href="http://geowebcache.org/">GeoWebCache</a> from <a href="http://boundlessgeo.com/">Boundless</a>. The TMS serves multiple tiled maps, in the <a href="https://en.wikipedia.org/wiki/Web_Mercator">Web Mercator</a> projection, 
 		(EPSG:3857) compatible with most JavaScript web mapping libraries such as <a href="http://openlayers.org/">OpenLayers</a>, <a href="https://www.mapbox.com/">MapBox</a>, <a href="http://leafletjs.com/">Leaflet</a>, and
 		even <a href="https://developers.arcgis.com/javascript/">ArcGIS</a>.
@@ -151,8 +185,7 @@
 		Note: Basemap tiles containing changing features based on NYC street centerline and building data will be updated on a quarterly basis.  
 	</p>	
 
-	<a name="basemap-layers"></a>
-	<h3>Basemap Tile Layers</h3>
+	<h3 id="basemap-layers-tms">Basemap Tile Layers (TMS)</h3>
 	<ul>
 		<li>
 			<b>basemap</b>
@@ -209,8 +242,7 @@
 		</li>
 	</ul>
 		
-	<a name="aerial-layers"></a>
-	<h3>Aerial Photography Tile Layers</h3>
+	<h3 id="aerial-layers-tms">Aerial Photography Tile Layers (TMS)</h3>
 	<ul>
 		<li>
 			<b>label-lt</b>
@@ -526,8 +558,615 @@
 		</li>
 	</ul>
 
-	<a name="js"></a>
-	<h2>Javascript How To</h2>
+	<h2 id="xyz">Tile Map Service</h2>
+	<p>
+		<b>Service Description:</b>
+		<a class="code" href="https://maps.nyc.gov/tms/1.0.0/">https://maps.nyc.gov/tms/1.0.0/</a>
+	</p>
+	<p>
+		The GIS team at NYC's Department of Information Technology has published a new 
+		<a href="https://en.wikipedia.org/wiki/Tiled_web_map">Slippy Map Service (XYZ)</a> using <a href="http://geoserver.org/">GeoServer</a>
+		and <a href="http://geowebcache.org/">GeoWebCache</a> from <a href="http://boundlessgeo.com/">Boundless</a>. The TMS serves multiple tiled maps, in the <a href="https://en.wikipedia.org/wiki/Web_Mercator">Web Mercator</a> projection, 
+		(EPSG:3857) compatible with most JavaScript web mapping libraries such as <a href="http://openlayers.org/">OpenLayers</a>, <a href="https://www.mapbox.com/">MapBox</a>, <a href="http://leafletjs.com/">Leaflet</a>, and
+		even <a href="https://developers.arcgis.com/javascript/">ArcGIS</a>.
+	</p>
+	<p>
+		Note: Basemap tiles containing changing features based on NYC street centerline and building data will be updated on a quarterly basis.  
+	</p>
+
+	<h3 id="basemap-layers-xyz">Basemap Tile Layers (XYZ)</h3>
+	<ul>
+		<li>
+			<b>basemap</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/carto/basemap/{z}/{x}/{y}.jpg</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/jpeg</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[39.3682, -75.9374, 42.0329, -71.7187]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8453323, 4774561, -7983695, 5165920]</span>
+				</li>
+			</ul>
+			<p>A base layer for all of your mapping applications that contains parks, streets, buildings and other planimetic features.</p> 
+		</li>
+		<li>
+			<b>label</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.0341, -74.2727, 41.2919, -71.9101]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268000, 4870900, -8005000, 5055500]</span>
+				</li>
+			</ul>
+			<p>A label layer that contains neighborhood, park, street and other labels to overlay on the basemap layer.</p> 
+		</li>
+	</ul>
+		
+	<h3 id="aerial-layers-xyz">Aerial Photography Tile Layers (XYZ)</h3>
+	<ul>
+		<li>
+			<b>label-lt</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/carto/label-lt/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.0341, -74.2727, 41.2919, -71.9101]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268000, 4870900, -8005000, 5055500]</span>
+				</li>
+			</ul>
+			<p>A label layer that contains neighborhood, park, street and other labels to overlay on the aerial photography layers.</p> 
+		</li>
+		<li>
+			<b>2016</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/2016/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2016 flyover.</p> 
+		</li>
+		<li>
+			<b>2014</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/2014/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2014 flyover.</p> 
+		</li>
+		<li>
+			<b>2012</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/2012/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2012 flyover.</p> 
+		</li>
+		<li>
+			<b>2010</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/2010/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2010 flyover.</p> 
+		</li>
+		<li>
+			<b>2008</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/2008/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2008 flyover.</p> 
+		</li>
+		<li>
+			<b>2006</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/2006/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2006 flyover.</p> 
+		</li>
+		<li>
+			<b>2004</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/2004/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2004 flyover.</p> 
+		</li>
+		<li>
+			<b>2001-2</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/2001-2/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An aerial photography layer created from the 2001-2 flyover.</p> 
+		</li>
+		<li>
+			<b>1996</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/1996/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An aerial photography layer created from the 1996 flyover.</p> 
+		</li>
+		<li>
+			<b>1951</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/1951/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An aerial photography layer created from a 1951 flyover.</p> 
+		</li>
+		<li>
+			<b>1924</b>
+			<ul class="tms-info">
+				<li>
+					<b>URL Template:</b>
+					<span class="code">https://maps.nyc.gov/xyz/1.0.0/photo/1924/{z}/{x}/{y}.png8</span>
+				</li>
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An aerial photography layer created from a 1924 flyover.</p> 
+		</li>
+	</ul>
+
+	<h2 id="wmts">Web Map Tile Service (WMTS)</h2>
+	<p>
+		<b>Get Capabilities:</b>
+		<a class="code" href="https://maps.nyc.gov/wmts/1.0.0/?REQUEST=getcapabilities">https://maps.nyc.gov/wmts/1.0.0/?REQUEST=getcapabilities</a>
+	</p>
+	<p>
+		The GIS team at NYC's Department of Information Technology has published a new <a href="http://www.opengeospatial.org/">Open Geospatial Consortium</a> standard
+		<a href="http://www.opengeospatial.org/standards/wmts">Web Map Tile Service (WMTS)</a> using <a href="http://geoserver.org/">GeoServer</a>
+		and <a href="http://geowebcache.org/">GeoWebCache</a> from <a href="http://boundlessgeo.com/">Boundless</a>. The TMS serves multiple tiled maps, in the <a href="https://en.wikipedia.org/wiki/Web_Mercator">Web Mercator</a> projection, 
+		(EPSG:3857) compatible with most JavaScript web mapping libraries such as <a href="http://openlayers.org/">OpenLayers</a>, <a href="https://www.mapbox.com/">MapBox</a>, <a href="http://leafletjs.com/">Leaflet</a>, and
+		even <a href="https://developers.arcgis.com/javascript/">ArcGIS</a>.
+	</p>
+	<p>
+		Note: Basemap tiles containing changing features based on NYC street centerline and building data will be updated on a quarterly basis.  
+	</p>	
+
+	<h3 id="basemap-layers-wmts">Basemap Tile Layers (WMTS)</h3>
+	<ul>
+		<li>
+			<b>basemap</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/jpeg</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[39.3682, -75.9374, 42.0329, -71.7187]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8453323, 4774561, -7983695, 5165920]</span>
+				</li>
+			</ul>
+			<p>A base layer for all of your mapping applications that contains parks, streets, buildings and other planimetic features.</p> 
+		</li>
+		<li>
+			<b>label</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.0341, -74.2727, 41.2919, -71.9101]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268000, 4870900, -8005000, 5055500]</span>
+				</li>
+			</ul>
+			<p>A label layer that contains neighborhood, park, street and other labels to overlay on the basemap layer.</p> 
+		</li>
+	</ul>
+		
+	<h3 id="aerial-layers-wmts">Aerial Photography Tile Layers (WMTS)</h3>
+	<ul>
+		<li>
+			<b>label-lt</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.0341, -74.2727, 41.2919, -71.9101]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268000, 4870900, -8005000, 5055500]</span>
+				</li>
+			</ul>
+			<p>A label layer that contains neighborhood, park, street and other labels to overlay on the aerial photography layers.</p> 
+		</li>
+		<li>
+			<b>2016</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2016 flyover.</p> 
+		</li>
+		<li>
+			<b>2014</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2014 flyover.</p> 
+		</li>
+		<li>
+			<b>2012</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2012 flyover.</p> 
+		</li>
+		<li>
+			<b>2010</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2010 flyover.</p> 
+		</li>
+		<li>
+			<b>2008</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2008 flyover.</p> 
+		</li>
+		<li>
+			<b>2006</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2006 flyover.</p> 
+		</li>
+		<li>
+			<b>2004</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An orthophotography layer created from the 2004 flyover.</p> 
+		</li>
+		<li>
+			<b>2001-2</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An aerial photography layer created from the 2001-2 flyover.</p> 
+		</li>
+		<li>
+			<b>1996</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An aerial photography layer created from the 1996 flyover.</p> 
+		</li>
+		<li>
+			<b>1951</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An aerial photography layer created from a 1951 flyover.</p> 
+		</li>
+		<li>
+			<b>1924</b>
+			<ul class="tms-info">
+				<li>
+					<b>Format:</b>
+					<span class="code">image/png8</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:4326):</b>
+					<span class="code">[40.4888, -74.2759, 40.9279, -73.6896]</span>
+				</li>
+				<li>
+					<b>Extent (EPSG:3857):</b>
+					<span class="code">[-8268357, 4937238, -8203099, 5001716]</span>
+				</li>
+			</ul>
+			<p>An aerial photography layer created from a 1924 flyover.</p> 
+		</li>
+	</ul>
+
+	<h2 id="js">Javascript How To</h2>
 	<p>
 		Below are some basic examples that show how to use the NYC Map Tiles in a web page.  Please note the extent limits placed on the layers. 
 		These limits will prevent your application from making spurrious tile requests for areas outside of extent of the NYC data which could
@@ -539,8 +1178,7 @@
 		JavaScript libraries please see <a href="/nyc-lib/">https://maps.nyc.gov/nyc-lib/</a>.
 	</p>
 	
-	<a name="ol"></a>
-	<h3>OpenLayers</h3>
+	<h3 id="ol">OpenLayers (TMS)</h3>
 	<p class="code">var view = new ol.View({
   center: [-8235252, 4969073],
   minZoom: 8,
@@ -568,10 +1206,83 @@ var map = new ol.Map({
   layers: [baseLayer, labelLayer]
 });</p>
 
-	<a href="openlayers.html">View the OpenLayers map...</a>
+	<a href="openlayers-tms.html">View the OpenLayers TMS map...</a>
 
-	<a name="leaf"></a>
-	<h3>Leaflet</h3>
+	<h3 id="ol-xyz">OpenLayers (XYZ)</h3>
+	<p class="code">var view = new ol.View({
+  center: [-8235252, 4969073],
+  minZoom: 8,
+  maxZoom: 19,
+  zoom: 10
+});
+
+var baseLayer = new ol.layer.Tile({
+  extent: [-8453323, 4774561, -7983695, 5165920],
+  source: new ol.source.XYZ({
+    url: 'https://maps{1-4}.nyc.gov/xyz/1.0.0/carto/basemap/{z}/{x}/{y}.jpg'
+  })
+});
+
+var labelLayer = new ol.layer.Tile({
+  extent: [-8268000, 4870900, -8005000, 5055500],
+  source: new ol.source.XYZ({
+    url: 'https://maps{1-4}.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.png8'
+  })
+});
+
+var map = new ol.Map({
+  target: 'map', /* The id of the DOM element that will contain the map */
+  view: view,
+  layers: [baseLayer, labelLayer]
+});</p>
+
+	<a href="openlayers-xyz.html">View the OpenLayers XYZ map...</a>
+
+	<h3 id="ol-wmts">OpenLayers (WMTS)</h3>
+	<p class="code">var map, baseLayer, labelLayer;
+
+var view = new ol.View({
+  center: [-8235252, 4969073],
+  minZoom: 8,
+  maxZoom: 19,
+  zoom: 10
+});
+
+var parser = new ol.format.WMTSCapabilities();
+
+fetch('https://maps.nyc.gov/wmts/1.0.0/?REQUEST=GetCapabilities').then(function(response){
+  return response.text();
+}).then(function(text){
+  var result = parser.read(text);
+
+  var baseOptions = ol.source.WMTS.optionsFromCapabilities(result, {
+      layer: 'basemap',
+      matrixSet: 'EPSG:900913'
+  });
+
+  var labelOptions = ol.source.WMTS.optionsFromCapabilities(result, {
+      layer: 'label',
+      matrixSet: 'EPSG:900913'
+  });
+
+  baseLayer = new ol.layer.Tile({
+    source: new ol.source.WMTS(baseOptions)
+  });
+
+  labelLayer = new ol.layer.Tile({
+    source: new ol.source.WMTS(labelOptions)
+  });
+
+  map = new ol.Map({
+    target: 'map', /* The id of the DOM element that will contain the map */
+    view: view,
+    layers: [baseLayer, labelLayer]
+  });
+});</p>
+
+	<a href="openlayers-wmts.html">View the OpenLayers WMTS map...</a>
+
+	<h3 id="leaf">Leaflet (TMS)</h3>
 	<p class="code">var map = L.map('map' /* The id of the DOM element that will contain the map */);
 	
 map.setView([40.703312, -73.97968], 10);
@@ -596,10 +1307,34 @@ var labelLayer = L.tileLayer('https://maps{s}.nyc.gov/tms/1.0.0/carto/label/{z}/
 
 map.addLayer(labelLayer);</p>
 
-	<a href="leaflet.html">View the Leaflet map...</a>
+	<a href="leaflet-tms.html">View the Leaflet TMS map...</a>
 
-	<a name="arcgis"></a>
-	<h3>ArcGIS</h3>
+	<h3 id="leaf-xyz">Leaflet (XYZ)</h3>
+	<p class="code">var map = L.map('map' /* The id of the DOM element that will contain the map */);
+	
+map.setView([40.703312, -73.97968], 10);
+
+var baseLayer = L.tileLayer('https://maps{s}.nyc.gov/xyz/1.0.0/carto/basemap/{z}/{x}/{y}.jpg', {
+  minNativeZoom: 8,
+  maxNativeZoom: 19,
+  subdomains: '1234',
+  bounds: L.latLngBounds([39.3682, -75.9374], [42.0329, -71.7187])
+});
+
+map.addLayer(baseLayer);
+
+var labelLayer = L.tileLayer('https://maps{s}.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.jpg', {
+  minNativeZoom: 8,
+  maxNativeZoom: 19,
+  subdomains: '1234',
+  bounds: L.latLngBounds([40.0341, -74.2727], [41.2919, -71.9101])
+});
+
+map.addLayer(labelLayer);</p>
+
+	<a href="leaflet-xyz.html">View the Leaflet XYZ map...</a>
+
+	<h3 id="arcgis">ArcGIS 4.x (TMS)</h3>
 	<p class="code">require([
   'esri/Map',
   'esri/views/MapView',
@@ -642,66 +1377,204 @@ map.addLayer(labelLayer);</p>
   map.add(labelLayer);
 });</p>
 
-	<a href="arcgis.html">View the ArcGIS map...</a>
+	<a href="arcgis4-tms.html">View the ArcGIS 4.x map...</a>
 
-	<a name="desk"></a>
-	<h2>Desktop How To</h2>
+	<h3 id="arcgis4-xyz">ArcGIS 4.x (XYZ)</h3>
+	<p class="code">require([
+  'esri/Map',
+  'esri/views/MapView',
+  'esri/layers/WebTileLayer',
+  'esri/geometry/Extent',
+  'dojo/domReady!'
+], function(Map, MapView, WebTileLayer, Extent){
+  
+  var map = new Map({});
+  
+  var view = new MapView({
+    container: 'map' /* The id of the DOM element that will contain the map */,
+    map: map,
+    center: [-73.97968, 40.703312],
+    zoom: 10
+  });
+  
+  var baseLayer = new WebTileLayer({
+    urlTemplate: 'https://maps{subDomain}.nyc.gov/xyz/1.0.0/carto/basemap/{level}/{col}/{row}.jpg',
+    subDomains: ['1', '2', '3', '4'],
+    fullExtent: new Extent({xmin: -8453323, ymin: 4774561, xmax: -7983695, ymax: 5165920})
+  });
+
+  map.add(baseLayer);
+
+  var labelLayer = new WebTileLayer({
+    urlTemplate: 'https://maps{subDomain}.nyc.gov/xyz/1.0.0/carto/label/{level}/{col}/{row}.png8',
+    subDomains: ['1', '2', '3', '4'],
+    fullExtent: new Extent({xmin: -8268000, ymin: 4870900, xmax: -8005000, ymax: 5055500})
+  });
+
+  map.add(labelLayer);
+});</p>
+
+	<a href="arcgis4-xyz.html">View the ArcGIS 4.x XYZ map...</a>
+
+	<h3 id="arcgis3-tms">ArcGIS 3.x (TMS)</h3>
+	<p class="code">require([
+	'esri/map', 'esri/layers/WebTiledLayer', 'esri/geometry/Extent'
+], function(Map, WebTiledLayer, Extent){
+  
+  var TMSLayer = WebTiledLayer.createSubclass({
+    getTileUrl: function(level, row, col){
+      var supermethod = this.getInherited(arguments);
+      var y = Math.pow(2, level) - row - 1;
+      return supermethod.call(this, level, y, col);
+    }
+  });
+
+  var map = new Map('map', {
+    center: [-73.97968, 40.703312],
+    zoom: 10
+  });
+  
+  var baseLayer = new TMSLayer('https://maps{subDomain}.nyc.gov/tms/1.0.0/carto/basemap/{level}/{col}/{row}.jpg', {
+    subDomains: ['1', '2', '3', '4'],
+    fullExtent: new Extent(-8453323, 4774561, -7983695, 5165920})
+  });
+
+  map.addLayer(baseLayer);
+
+  var labelLayer = new TMSLayer('https://maps{subDomain}.nyc.gov/tms/1.0.0/carto/label/{level}/{col}/{row}.png8', {
+    subDomains: ['1', '2', '3', '4'],
+    fullExtent: new Extent(-8268000, 4870900, -8005000, 5055500)
+  });
+
+  map.addLayer(labelLayer);
+});</p>
+
+	<a href="arcgis3-tms.html">View the ArcGIS 3.x TMS map...</a>
+
+	<h3 id="arcgis3-xyz">ArcGIS 3.x (XYZ)</h3>
+	<p class="code">require([
+	'esri/map', 'esri/layers/WebTiledLayer', 'esri/geometry/Extent'
+], function(Map, WebTiledLayer, Extent){
+  
+  var map = new Map('map', {
+    center: [-73.97968, 40.703312],
+    zoom: 10
+  });
+  
+  var baseLayer = new WebTiledLayer('https://maps{subDomain}.nyc.gov/xyz/1.0.0/carto/basemap/{level}/{col}/{row}.jpg', {
+    subDomains: ['1', '2', '3', '4'],
+    fullExtent: new Extent(-8453323, 4774561, -7983695, 5165920})
+  });
+
+  map.addLayer(baseLayer);
+
+  var labelLayer = new WebTiledLayer('https://maps{subDomain}.nyc.gov/xyz/1.0.0/carto/label/{level}/{col}/{row}.png8', {
+    subDomains: ['1', '2', '3', '4'],
+    fullExtent: new Extent(-8268000, 4870900, -8005000, 5055500)
+  });
+
+  map.addLayer(labelLayer);
+});</p>
+
+	<a href="arcgis3-xyz.html">View the ArcGIS 3.x XYZ map...</a>
 	
-	<a name="qgis"></a>
-	<h3>QGIS</h3>
-	<p>
-		<ol>
-			<li>Download and install QGIS from <a href="http://www.qgis.org/en/site/forusers/download.html">http://www.qgis.org/en/site/forusers/download.html</a></li>
-			<li>Open QGIS</li>
-			<li>Click the <b>Settings</b> menu and choose <b>Options</b></li>
-			<li>Click the <b>Network</b> icon in the left panel of the <b>Options</b> dialog</li>
-			<li>Check <b>Use proxy for web access</b></li>
-			<li>Enter <b>bcpxy.nycnet</b> in the <b>Host</b> field</li>
-			<li>Enter <b>8080</b> in the <b>Port</b> field</li>
-			<li>Enter your Windows user in the <b>User</b> field</li>
-			<li>Enter your Windows password in the <b>User</b> field</li>
-			<li>Click the <b>Ok</b> button to close the dialog and save your proxy settings</li>
-			<li>Click the <b>Plugins</b> menu and choose <b>Manage and Install Plugins...</b></li>
-			<li>Click the <b>All</b> icon in the left panel of the <b>Plugins</b> dialog</li>
-			<li>Enter <b>TileLayer Plugin</b> in the <b>Search</b> field</li>
-			<li>Choose the <b>TileLayer Plugin</b> in the center panel of the <b>Plugins</b> dialog</li>
-			<li>Click the <b>Install plugin</b> button to install the <b>TileLayer Plugin</b></li>
-			<li>Click the <b>Close</b> button on the dialog</li>
-			<li>Download <a href="nyc.tsv">nyc.tsv</a> to a folder on your PC</li>
-			<li>Click the <b>Web</b> menu and choose <b>TileLayerPlugin</b> and then choose <b>Add Tile Layer</b></li>
-			<li>Click the <b>Settings</b> button in the <b>Add tile layer</b> dialog</li>
-			<li>Enter the path to the folder containing the <b>nyc.tsv</b> file in the <b>External layer definitin directory</b> field of the <b>TileLayerPlugin Settings</b> dialog</li>
-			<li>Click the <b>OK</b> button to close the dialog and save your settings</li>
-			<li>Choose a TMS service from the <b>nyc</b> list</li>
-			<li>Click the <b>Add</b> button</li>
-		</ol>
-	</p>
+	<h3 id="arcgis3-wmts">ArcGIS 3.x (WMTS)</h3>
+	<p class="code">require([
+  'esri/map', 'esri/layers/WMTSLayer', 'esri/layers/WMTSLayerInfo', 'esri/geometry/Extent'
+], function(Map, WMTSLayer, WMTSLayerInfo, Extent){
 
-	<a name="arcmap"></a>
-	<h3>ArcMap</h3>
-	<p>
-		<ol>
-			<li>Install ArcMap version 10.x</li>
-			<li>Close ArcMap</li>
-			<li>Download ArcBruTile for ArcMap from <a href="https://github.com/ArcBruTile/ArcBruTile">https://github.com/ArcBruTile/ArcBruTile</a></li>
-			<li>Unzip the ArcBruTile download to a folder on your PC</li>
-			<li>Run the <b>setup.exe</b> program that you unzipped to install the extension</li>
-			<li>Open ArcMap</li>
-			<li>Click the <b>View</b> menu and choose <b>Data Frame Properties...</b></li>
-			<li>Click the <b>Coordinate System</b> tab</li>
-			<li>Enter <b>3857</b> in the <b>Type here to search</b> field and press the <b>Enter</b> key</li>
-			<li>Click the <b>OK</b> button</li>
-			<li>Add a NYC dataset to your view to avoid having ArcMap try to load tiles for the entire planet</li>
-			<li>Right-click on the ArcMap toolbar and choose <b>ArcBruTile</b> from the menu to enable the ArcBruTile toolbar</li>
-			<li>Open the <b>ArcBruTile</b> menu and choose <b>Add TMS service...</b></li>
-			<li>Click the <b>Add providor</b> button in the <b>Add TMS service</b> dialog</li>
-			<li>In the <b>Add TMS Providor</b> dialog, enter a name for your service in the <b>Name</b> field</li>
-			<li>In the <b>Add TMS Providor</b> dialog, enter <b>https://maps.nyc.gov/tms/1.0.0/</b> in the <b>Url</b> field</li>
-			<li>In the <b>Add TMS Providor</b> dialog, click the <b>Add providor</b> button</li>
-			<li>Choose a TMS service from the <b>Services</b> list</li>
-			<li>Click the <b>Add Selected Service</b> button</li>
-		</ol>
-	</p>
+  var map = new Map('map', {
+    center: [-73.97968, 40.703312],
+    zoom: 10
+  });
+
+  var baseInfo = new WMTSLayerInfo({
+    identifier: 'basemap',
+    tileMatrixSet: 'EPSG:900913',
+    format: 'jpeg',
+    fullExtent: new Extent(-8453323, 4774561, -7983695, 5165920)
+  });
+
+  var baseOptions = {
+    serviceMode: 'KVP',
+    layerInfo: baseInfo
+  };
+
+  var baseLayer = new WMTSLayer('https://maps.nyc.gov/wmts/1.0.0/', baseOptions);
+
+  map.addLayer(baseLayer);
+
+  var labelInfo = new WMTSLayerInfo({
+    identifier: 'label',
+    tileMatrixSet: 'EPSG:900913',
+    format: 'png8',
+    fullExtent: new Extent(-8453323, 4774561, -7983695, 5165920)
+  });
+
+  var labelOptions = {
+    serviceMode: 'KVP',
+    layerInfo: labelInfo
+  };
+
+  var labelLayer = new WMTSLayer('https://maps.nyc.gov/wmts/1.0.0/', labelOptions);
+
+  map.addLayer(labelLayer);
+});</p>
+
+	<a href="arcgis3-wmts.html">View the ArcGIS 3.x WMTS map...</a>
+	
+	<h2 id="desk">Desktop How To</h2>
+	
+	<h3 id="qgis">QGIS</h3>
+	<ol>
+		<li>Download and install QGIS from <a href="http://www.qgis.org/en/site/forusers/download.html">http://www.qgis.org/en/site/forusers/download.html</a></li>
+		<li>Open QGIS</li>
+		<li>Click the <b>Settings</b> menu and choose <b>Options</b></li>
+		<li>Click the <b>Network</b> icon in the left panel of the <b>Options</b> dialog</li>
+		<li>Check <b>Use proxy for web access</b></li>
+		<li>Enter <b>bcpxy.nycnet</b> in the <b>Host</b> field</li>
+		<li>Enter <b>8080</b> in the <b>Port</b> field</li>
+		<li>Enter your Windows user in the <b>User</b> field</li>
+		<li>Enter your Windows password in the <b>User</b> field</li>
+		<li>Click the <b>Ok</b> button to close the dialog and save your proxy settings</li>
+		<li>Click the <b>Plugins</b> menu and choose <b>Manage and Install Plugins...</b></li>
+		<li>Click the <b>All</b> icon in the left panel of the <b>Plugins</b> dialog</li>
+		<li>Enter <b>TileLayer Plugin</b> in the <b>Search</b> field</li>
+		<li>Choose the <b>TileLayer Plugin</b> in the center panel of the <b>Plugins</b> dialog</li>
+		<li>Click the <b>Install plugin</b> button to install the <b>TileLayer Plugin</b></li>
+		<li>Click the <b>Close</b> button on the dialog</li>
+		<li>Download <a href="nyc.tsv">nyc.tsv</a> to a folder on your PC</li>
+		<li>Click the <b>Web</b> menu and choose <b>TileLayerPlugin</b> and then choose <b>Add Tile Layer</b></li>
+		<li>Click the <b>Settings</b> button in the <b>Add tile layer</b> dialog</li>
+		<li>Enter the path to the folder containing the <b>nyc.tsv</b> file in the <b>External layer definitin directory</b> field of the <b>TileLayerPlugin Settings</b> dialog</li>
+		<li>Click the <b>OK</b> button to close the dialog and save your settings</li>
+		<li>Choose a TMS service from the <b>nyc</b> list</li>
+		<li>Click the <b>Add</b> button</li>
+	</ol>
+
+
+	<h3 id="arcmap">ArcMap</h3>
+	<ol>
+		<li>Install ArcMap version 10.x</li>
+		<li>Close ArcMap</li>
+		<li>Download ArcBruTile for ArcMap from <a href="https://github.com/ArcBruTile/ArcBruTile">https://github.com/ArcBruTile/ArcBruTile</a></li>
+		<li>Unzip the ArcBruTile download to a folder on your PC</li>
+		<li>Run the <b>setup.exe</b> program that you unzipped to install the extension</li>
+		<li>Open ArcMap</li>
+		<li>Click the <b>View</b> menu and choose <b>Data Frame Properties...</b></li>
+		<li>Click the <b>Coordinate System</b> tab</li>
+		<li>Enter <b>3857</b> in the <b>Type here to search</b> field and press the <b>Enter</b> key</li>
+		<li>Click the <b>OK</b> button</li>
+		<li>Add a NYC dataset to your view to avoid having ArcMap try to load tiles for the entire planet</li>
+		<li>Right-click on the ArcMap toolbar and choose <b>ArcBruTile</b> from the menu to enable the ArcBruTile toolbar</li>
+		<li>Open the <b>ArcBruTile</b> menu and choose <b>Add TMS service...</b></li>
+		<li>Click the <b>Add providor</b> button in the <b>Add TMS service</b> dialog</li>
+		<li>In the <b>Add TMS Providor</b> dialog, enter a name for your service in the <b>Name</b> field</li>
+		<li>In the <b>Add TMS Providor</b> dialog, enter <b>https://maps.nyc.gov/tms/1.0.0/</b> in the <b>Url</b> field</li>
+		<li>In the <b>Add TMS Providor</b> dialog, click the <b>Add providor</b> button</li>
+		<li>Choose a TMS service from the <b>Services</b> list</li>
+		<li>Click the <b>Add Selected Service</b> button</li>
+	</ol>
 
 </body>
 </html>

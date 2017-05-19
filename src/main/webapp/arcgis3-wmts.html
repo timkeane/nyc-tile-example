@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta prefix="og: http://ogp.me/ns#" property="og:title" content="NYC Map Tiles - How To">
+	<meta prefix="og: http://ogp.me/ns#" property="og:type" content="website">
+	<meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://maps.nyc.gov/tiles">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://maps.nyc.gov/tiles/img/og.png">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1200">
+	<meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="626">
+	<meta prefix="og: http://ogp.me/ns#" property="og:description" content="NYC Map Tiles - How To">
+	<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="maps.nyc.gov">
+	<title>NYC Map Tiles - ArcGIS Example</title>
+	<link rel="manifest" href="manifest.webmanifest">
+	<link rel="apple-touch-startup-image" href="img/icon-512.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/icon-60.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icon-76.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icon-120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon-152.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="img/icon-167.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icon-180.png">
+	<link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+	<style>
+		html, body, #map {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<script src="https://js.arcgis.com/3.20/"></script>
+</head>
+<body>
+	<div id="map"></div>
+	<script>		
+		require([
+			'esri/map', 'esri/layers/WMTSLayer', 'esri/layers/WMTSLayerInfo', 'esri/geometry/Extent'
+		], function(Map, WMTSLayer, WMTSLayerInfo, Extent){
+
+			var map = new Map('map', {
+				center: [-73.97968, 40.703312],
+				zoom: 10
+			});
+			
+			var baseInfo = new WMTSLayerInfo({
+				identifier: 'basemap',
+				tileMatrixSet: 'EPSG:900913',
+				format: 'jpeg',
+				fullExtent: new Extent(-8453323, 4774561, -7983695, 5165920)
+			});
+			
+			var baseOptions = {
+				serviceMode: 'KVP',
+				layerInfo: baseInfo
+			};
+		
+			var baseLayer = new WMTSLayer('https://maps.nyc.gov/wmts/1.0.0/', baseOptions);
+		
+			map.addLayer(baseLayer);
+
+			var labelInfo = new WMTSLayerInfo({
+				identifier: 'label',
+				tileMatrixSet: 'EPSG:900913',
+				format: 'png8',
+				fullExtent: new Extent(-8453323, 4774561, -7983695, 5165920)
+			});
+			
+			var labelOptions = {
+				serviceMode: 'KVP',
+				layerInfo: labelInfo
+			};
+		
+			var labelLayer = new WMTSLayer('https://maps.nyc.gov/wmts/1.0.0/', labelOptions);
+		
+			map.addLayer(labelLayer);
+		});
+    </script>
+</body>
+</html>
