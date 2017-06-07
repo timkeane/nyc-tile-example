@@ -7,7 +7,7 @@ plugins {
 
 ext {
 	appName = 'nyc-tile-example'
-	ver = 'v0.1.1-SNAPSHOT'
+	ver = 'v0.1.1'
 	pkgDir = "${buildDir}/${appName}/${ver}"
 	remoteDir = 'tiles'
 }
