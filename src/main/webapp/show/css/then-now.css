@@ -51,6 +51,7 @@ h1, #map, #splash {
 #splash div span {
 	font-size: 38px;
 	color: #fff;
+	font-weight: normal;
 }
 #splash div.title {
 	font-weight: bold;
