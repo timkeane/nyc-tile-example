@@ -141,7 +141,7 @@
 			function zoom() {
 				var v = map.getView();
 				v.animate({zoom: v.getZoom() + 1, duration: 2000});
-				if (v.getZoom() > 15) map.off('postrender', zoom);
+				if (v.getZoom() > 15) map.un('postrender', zoom);
 			}
 
 			$('.fld-srch-container input').keyup(function() {
