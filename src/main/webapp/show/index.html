@@ -28,13 +28,13 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.css" rel="stylesheet">
-	<link rel="stylesheet" href="/nyc-lib/v0.3.7/css/nyc-ol-lib.css">
+	<link rel="stylesheet" href="https://maps.nyc.gov/nyc-lib/v0.3.7/css/nyc-ol-lib.css">
 	<link rel="stylesheet" href="css/then-now.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.js"></script>
-	<script src="/nyc-lib/v0.3.7/js/nyc-ol-lib.js"></script>
+	<script src="https://maps.nyc.gov/nyc-lib/v0.3.7/js/nyc-ol-lib.js"></script>
 </head>
 <body>
 	<h1>
@@ -64,7 +64,7 @@
 			src: nyc.util.isIe() || nyc.util.isIos() ? 'img/me.png' : 'img/me.svg'
 		});
 				
-		$(document).ready(function(){
+		$(document).ready(function() {
 			new nyc.Share('#map');
 			
 			map = new nyc.ol.Basemap({target: $('#map').get(0)});
@@ -103,29 +103,29 @@
 				$('#share-btns').animate({bottom: '-2px'});
 			};
 			
- 			$('.btn-swipe, .btn-lyr-mgr').click(function(){
+ 			$('.btn-swipe, .btn-lyr-mgr').click(function() {
  				buttonsDown();
  				fade.cancel();
  			});
  			
- 			$('.btn-fade, .btn-lyr-mgr').click(function(){
+ 			$('.btn-fade, .btn-lyr-mgr').click(function() {
  				buttonsDown();
  				swipe.cancel();
  			});
  			
- 			$('.btn-swipe, .btn-fade').click(function(){
+ 			$('.btn-swipe, .btn-fade').click(function() {
  				buttonsDown();
 				lyrMgr.clear();
  			});
  			
- 			$('.btn-lyr-mgr').click(function(){
+ 			$('.btn-lyr-mgr').click(function() {
  				$('#share-btn, a.info').animate({bottom: '3px'});
  				$.each(lyrMgr.controls, function(_, control){
  					control.trigger('change', control.val());
  				});
 			});
  			
-			$('.mnu-fade .btn-manual, .mnu-fade .btn-auto').click(function(){
+			$('.mnu-fade .btn-manual, .mnu-fade .btn-auto').click(function() {
 				if ($('.fade-progress').css('display') == 'block'){
 					$('#share-btn, a.info').animate({bottom: '27px'});
 					$('#share-btns').animate({bottom: '22px'});
@@ -134,9 +134,27 @@
 			
 			$(map.getTarget()).append($('a.info'));
 			
-			$(document).one('click', function(){
+			$(document).one('click', function() {
 				$('#splash').fadeOut();
 			})
+
+			$('.fld-srch-container input').keyup(function() {
+				console.info($(this).val())
+				if ($(this).val().toLowerCase() == 'monsters') {
+					var c = [-8005606, 4792924];
+					var v = map.getView();
+					v.animate({zoom: 10}, {center: c, zoom: 13, duration: 5000});
+					setTimeout(function() {
+						var i = setInterval(function() {
+							v.animate({
+								zoom: v.getZoom() + 1,
+								duration: 2000
+							});
+							if (v.getZoom() > 15) clearInterval(i);
+						}, 3000);
+					}, 2000);
+				}
+			});
 		});
 	</script>
 </body>
