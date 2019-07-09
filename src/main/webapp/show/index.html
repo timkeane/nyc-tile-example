@@ -28,13 +28,14 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.css" rel="stylesheet">
-	<link rel="stylesheet" href="/nyc-lib/v0.3.7/css/nyc-ol-lib.css">
+	<link rel="stylesheet" href="https://maps.nyc.gov/nyc-lib/v0.3.7/css/nyc-ol-lib.css">
 	<link rel="stylesheet" href="css/then-now.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.0.1/ol.js"></script>
-	<script src="/nyc-lib/v0.3.7/js/nyc-ol-lib.js"></script>
+	<script src="https://maps.nyc.gov/nyc-lib/v0.3.7/js/nyc-ol-lib.js"></script>
+	<style>img.hide{position: fixed; left: -5000px;}</style>
 </head>
 <body>
 	<h1>
@@ -67,6 +68,8 @@
 		$(document).ready(function() {
 			new nyc.Share('#map');
 			
+			nyc.ol.Basemap.PHOTO_URLS['2018'] = 'https://maps{1-4}.nyc.gov/tms/1.0.0/photo/2018/{z}/{x}/{-y}.png8';
+
 			map = new nyc.ol.Basemap({target: $('#map').get(0)});
 
 			var source = new ol.source.Vector();
@@ -139,18 +142,54 @@
 			})
 
 			function zoom() {
-				var v = map.getView();
-				v.animate({zoom: v.getZoom() + 1, duration: 2000});
-				if (v.getZoom() > 15) map.un('postrender', zoom);
+				setTimeout(function() {
+					var v = map.getView();
+					v.animate({zoom: v.getZoom() + 1, duration: 5000});
+					if (v.getZoom() > 15) map.un('moveend', zoom);
+				}, 1000);
 			}
 
 			$('.fld-srch-container input').keyup(function() {
 				if ($(this).val().toLowerCase() == 'monsters') {
-					map.getView().animate({zoom: 10, center: [-8005606, 4792924], duration: 5000});
-					map.on('postrender', zoom);
+					map.getView().animate({zoom: 10, center: [-8005066, 4792408], duration: 5000});
+					map.on('moveend', zoom);
 				}
 			});
 		});
 	</script>
+	<img class="hide" src="https://maps1.nyc.gov/tms/1.0.0/carto/basemap/13/2459/5075.jpg">
+	<img class="hide" src="https://maps2.nyc.gov/tms/1.0.0/carto/basemap/14/4918/10151.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/14/4919/10151.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/15/9837/20303.jpg">
+	<img class="hide" src="https://maps1.nyc.gov/tms/1.0.0/carto/basemap/15/9837/20302.jpg">
+	<img class="hide" src="https://maps2.nyc.gov/tms/1.0.0/carto/basemap/15/9838/20303.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/15/9838/20302.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/16/19674/40607.jpg">
+	<img class="hide" src="https://maps1.nyc.gov/tms/1.0.0/carto/basemap/16/19674/40606.jpg">
+	<img class="hide" src="https://maps2.nyc.gov/tms/1.0.0/carto/basemap/16/19674/40605.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/16/19675/40607.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/16/19675/40606.jpg">
+	<img class="hide" src="https://maps1.nyc.gov/tms/1.0.0/carto/basemap/16/19674/40604.jpg">
+	<img class="hide" src="https://maps2.nyc.gov/tms/1.0.0/carto/basemap/16/19675/40605.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/16/19676/40607.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/16/19675/40604.jpg">
+	<img class="hide" src="https://maps1.nyc.gov/tms/1.0.0/carto/basemap/16/19676/40606.jpg">
+	<img class="hide" src="https://maps2.nyc.gov/tms/1.0.0/carto/basemap/16/19676/40606.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/16/19676/40605.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/16/19676/40604.jpg">
+	<img class="hide" src="https://maps1.nyc.gov/tms/1.0.0/carto/basemap/16/19677/40606.jpg">
+	<img class="hide" src="https://maps2.nyc.gov/tms/1.0.0/carto/basemap/16/19677/40605.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/16/19677/40604.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/17/39352/81211.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/17/39352/81210.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/17/39353/81211.jpg">
+	<img class="hide" src="https://maps1.nyc.gov/tms/1.0.0/carto/basemap/17/39352/81209.jpg">
+	<img class="hide" src="https://maps2.nyc.gov/tms/1.0.0/carto/basemap/17/39353/81210.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/17/39353/81209.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/17/39354/81211.jpg">
+	<img class="hide" src="https://maps1.nyc.gov/tms/1.0.0/carto/basemap/17/39354/81210.jpg">
+	<img class="hide" src="https://maps2.nyc.gov/tms/1.0.0/carto/basemap/17/39354/81209.jpg">
+	<img class="hide" src="https://maps3.nyc.gov/tms/1.0.0/carto/basemap/17/39355/81210.jpg">
+	<img class="hide" src="https://maps4.nyc.gov/tms/1.0.0/carto/basemap/17/39355/81209.jpg">
 </body>
 </html>
