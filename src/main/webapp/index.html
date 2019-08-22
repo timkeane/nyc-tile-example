@@ -1629,19 +1629,21 @@ map.addLayer(labelLayer);</p>
 				<li>Click the <strong>Ok</strong> button to close the dialog and save your proxy settings</li>
 			</ul>
 		</li>
-		<li>Click the <strong>Plugins</strong> menu and choose <strong>Manage and Install Plugins...</strong></li>
-		<li>Click the <strong>All</strong> icon in the left panel of the <strong>Plugins</strong> dialog</li>
-		<li>Enter <strong>TileLayer Plugin</strong> in the <strong>Search</strong> field</li>
-		<li>Choose the <strong>TileLayer Plugin</strong> in the center panel of the <strong>Plugins</strong> dialog</li>
-		<li>Click the <strong>Install plugin</strong> button to install the <strong>TileLayer Plugin</strong></li>
-		<li>Click the <strong>Close</strong> button on the dialog</li>
-		<li>Download <a href="nyc.tsv">nyc.tsv</a> to a folder on your PC</li>
-		<li>Click the <strong>Web</strong> menu and choose <strong>TileLayerPlugin</strong> and then choose <strong>Add Tile Layer</strong></li>
-		<li>Click the <strong>Settings</strong> button in the <strong>Add tile layer</strong> dialog</li>
-		<li>Enter the path to the folder containing the <strong>nyc.tsv</strong> file in the <strong>External layer definition directory</strong> field of the <strong>TileLayerPlugin Settings</strong> dialog</li>
-		<li>Click the <strong>OK</strong> button to close the dialog and save your settings</li>
-		<li>Choose a TMS service from the <strong>nyc</strong> list</li>
-		<li>Click the <strong>Add</strong> button</li>
+		<li>For QGIS 3.4 long term releases and newer, click the <strong>Layer</strong> menu and choose <strong>Data Source Manager</strong>
+			<ul>
+				<li>This lets you have access to vector or raster file-based data as well as databases or web services(WMS/WFS/XYZ) supported by QGIS </li>
+			</ul>
+		</li>
+		<li>For this example, select <strong>WMS/WMTS</strong> shown on the left side</li>
+		<li>On the right hand side click the <strong>New</strong> button</li>
+		<li>Enter a descriptive <strong>Name</strong> like "NYC Map Tiles(WMTS)"</li>
+		<li>Enter for the URL <strong> https://maps.nyc.gov/wmts/1.0.0/?REQUEST=getcapabilities </strong> (you can retrieve this above in the WMTS section; the same goes for the other web services listed)</li>
+        <li>Click the <strong>OK</strong> button</li>
+        <li>Click the <strong>Connect</strong> button</li>
+		<li>Under the <strong>Tilesets</strong> tab select a tile set</li>
+		<li>Click <strong>Add</strong> to add the selected tile set to your QGIS display</li>
+		<li>Alernatively you can view your data sources and create new connections within a hierarchial structure using the <strong>Browser Panel</strong>. To show this panel, navigate to <strong>View -> Panels</strong> and make sure <strong>Browser</strong> is selected. This lets you do virtually everything you can do from the <strong>Data Source Manager</strong> as well as view data from all available drives</li>
+		<li><strong>NOTE: </strong>If you are having trouble viewing data from a source, make sure to set the applicable CRS(coordinate reference system) shown in the bottom right corner of the QGIS window. It is recommended to reproject your source data to the Web Mercator coordinate system when preparing to share maps or layers on the Web; search for EPSG:3857, and hit apply once it is selected</li>
 	</ol>
 
 	<h3 id="arcmap">ArcMap</h3>
